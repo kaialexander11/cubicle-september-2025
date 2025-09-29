@@ -4,7 +4,7 @@ const cubeManager = require('../managers/cubeManager.js');
 
 // Path: /cubes/create
 router.get('/create', (req, res) => {
-    console.log(cubeManager.getAll());
+    //console.log(cubeManager.getAll());
     res.render('create');
 });
 
@@ -24,8 +24,8 @@ router.post('/create', (req, res) => {
         name,
         description,
         imageUrl, 
-        dificultyLevel: Number(difficultyLevel),
-        
+        difficultyLevel: Number(difficultyLevel),
+
     });
 
 
