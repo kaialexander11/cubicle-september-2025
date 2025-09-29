@@ -1,17 +1,32 @@
 const router = require('express').Router();
+const cubeManager = require('../managers/cubeManager.js');
 
 
 // Path: /cubes/create
 router.get('/create', (req, res) => {
+    console.log(cubeManager.getAll());
     res.render('create');
 });
 
 router.post('/create', (req, res) => {
 
-    console.log(req.body);
+    const { 
+        name, 
+        description, 
+        difficultyLevel, 
+        imageUrl, 
+    } = req.body;
 
-    //res.send('Form submitted!');
+    cubeManager.create({
+        name,
+        description,
+        imageUrl, 
+        dificultyLevel: Number(difficultyLevel),
+    });
+
+
     res.redirect('/');
+    //res.send('Form submitted!');
 
 });
 
