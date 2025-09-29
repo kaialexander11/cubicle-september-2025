@@ -11,17 +11,21 @@ router.get('/create', (req, res) => {
 router.post('/create', (req, res) => {
 
     const { 
+
         name, 
         description, 
         difficultyLevel, 
         imageUrl, 
+
     } = req.body;
 
     cubeManager.create({
+
         name,
         description,
         imageUrl, 
         dificultyLevel: Number(difficultyLevel),
+        
     });
 
 
