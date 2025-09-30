@@ -5,8 +5,14 @@ const cubeManager = require('../managers/cubeManager.js');
 
 router.get('/', (req, res) => {
 
-    const cubes = cubeManager.getAll();
+    //console.log(req.query);
     //res.send('Hello from Express!');
+
+    const { search, from, to } = req.query;
+
+    const cubes = cubeManager.getAll(search, from, to);
+
+    //const cubes = cubeManager.getAll();
     res.render('index', { cubes });
 
 });
