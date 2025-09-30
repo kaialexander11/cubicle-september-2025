@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     const cubes = cubeManager.getAll(search, from, to);
 
     //const cubes = cubeManager.getAll();
-    res.render('index', { cubes });
+    res.render('index', { cubes, search, from, to });
 
 });
 
