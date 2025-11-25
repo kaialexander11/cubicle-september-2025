@@ -1,3 +1,5 @@
+const Cube = require('../models/Cube.js');
+
 const uniqid = require('uniqid');
 //const db = require('../db.json');
 //const cubes = [];
@@ -22,7 +24,9 @@ const cubes = [
 ];
 
 //exports.getAll = () => cubes.slice();
+
 exports.getAll = (search, from, to) => {
+
     let result = cubes.slice();
 
     if (search) {
@@ -38,21 +42,33 @@ exports.getAll = (search, from, to) => {
     }
 
     return result;
+
 };
 
-exports.getOne = (cubeId) => cubes.find(x => x.id == cubeId);
+//exports.getOne = (cubeId) => cubes.find(x => x.id == cubeId);
+//exports.getOne = (cubeId) => Cube.findById(cubeId).lean();
+//exports.getOne = (cubeId) => Cube.findById(cubeId).lean();
+//exports.getOneLean = (cubeId) => this.getOne(cubeId);
 
-exports.create = (cubeData) => {
+exports.getOne = async (cubeId) =>{
+    await Cube.findById(cubeId);
+};
 
-    const newCube = {
+exports.create = async (cubeData) => {
+
+    //const newCube = {
         //id: (new Date()).getTime(),
         //id: cubes.length + 1,
-        id: uniqid(),
-        ...cubeData,
-    };
+    //     id: uniqid(),
+    //     ...cubeData,
+    // };
 
-    cubes.push(newCube);
+    const cube = new Cube(cubeData);
 
-    return newCube;
+    await cube.save();
+
+    //cubes.push(newCube);
+    
+    return cube;
 
 }; 
