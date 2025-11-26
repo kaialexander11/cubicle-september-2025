@@ -54,7 +54,7 @@ exports.getOne = async (cubeId) =>{
     await Cube.findById(cubeId);
 };
 
-exports.create = async (cubeData) => {
+exports.create = (cubeData) => {
 
     //const newCube = {
         //id: (new Date()).getTime(),
@@ -65,10 +65,22 @@ exports.create = async (cubeData) => {
 
     const cube = new Cube(cubeData);
 
-    await cube.save();
+    //await cube.save();
 
     //cubes.push(newCube);
     
-    return cube;
+    return cube.save();
+
+}; 
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+
+   //return Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } });
+   
+   const cube = await Cube.findById(cubeId);
+
+   cube.accessories.push(accessoryId);
+
+   return cube.save();
 
 }; 
