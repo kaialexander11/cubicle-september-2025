@@ -50,9 +50,12 @@ exports.getAll = (search, from, to) => {
 //exports.getOne = (cubeId) => Cube.findById(cubeId).lean();
 //exports.getOneLean = (cubeId) => this.getOne(cubeId);
 
-exports.getOne = async (cubeId) =>{
-    await Cube.findById(cubeId);
-};
+// exports.getOne = async (cubeId) =>{
+//     await Cube.findById(cubeId);
+// };
+
+exports.getOne = (cubeId) => Cube.findById(cubeId);
+exports.getOneWithAccessories = (cubeId) => this.getOne(cubeId).populate('accessories');
 
 exports.create = (cubeData) => {
 
