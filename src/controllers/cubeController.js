@@ -23,12 +23,13 @@ router.post('/create', async (req, res) => {
 
     } = req.body;
 
-    const cube = await cubeManager.create({
+    await cubeManager.create({
 
         name,
         description,
         imageUrl, 
         difficultyLevel: Number(difficultyLevel),
+        owner: req.user._id,
 
     });
 
