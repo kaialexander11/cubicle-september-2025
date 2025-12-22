@@ -7,7 +7,9 @@ const accessoryManager = require('../managers/accessoryManager.js');
 // Path: /cubes/create
 router.get('/create', (req, res) => {
     //console.log(cubeManager.getAll());
+    //console.log(req.user);
     res.render('create');
+
 });
 
 router.post('/create', async (req, res) => {
@@ -52,11 +54,8 @@ router.get('/:cubeId/details', async (req, res) => {
 router.get('/:cubeId/attach-accessory', async (req, res) => {
 
     const cube = await cubeManager.getOne(req.params.cubeId).lean();
-
     const accessories = await accessoryManager.getOthers(cube.accessories).lean();
-
     const hasAccessories = accessories.length > 0;
-    
     res.render('accessory/attach', { cube, accessories, hasAccessories });
 
 });
