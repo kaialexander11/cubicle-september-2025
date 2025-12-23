@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const cubeManager = require('../managers/cubeManager.js');
+const cubeManager = require('../managers/cubeManager');
 
 //const router = express.Router();
 

@@ -1,14 +1,14 @@
 const router = require('express').Router();
 
-const cubeManager = require('../managers/cubeManager.js');
-const accessoryManager = require('../managers/accessoryManager.js');
+const cubeManager = require('../managers/cubeManager');
+const accessoryManager = require('../managers/accessoryManager');
 
 
 // Path: /cubes/create
 router.get('/create', (req, res) => {
     //console.log(cubeManager.getAll());
     //console.log(req.user);
-    res.render('create');
+    res.render('cube/create');
 
 });
 
@@ -18,8 +18,8 @@ router.post('/create', async (req, res) => {
 
         name, 
         description, 
-        difficultyLevel, 
         imageUrl, 
+        difficultyLevel, 
 
     } = req.body;
 
@@ -34,7 +34,9 @@ router.post('/create', async (req, res) => {
     });
 
     res.redirect('/');
+
     //res.send('Form submitted!');
+
 });
 
 router.get('/:cubeId/details', async (req, res) => {
@@ -42,13 +44,12 @@ router.get('/:cubeId/details', async (req, res) => {
     const cube = await cubeManager.getOneWithAccessories(req.params.cubeId).lean();
     
     console.log(cube);
-    
 
     if (!cube) {
         return res.redirect('/404');
     }
 
-    res.render('details', { cube });
+    res.render('cube/details', { cube });
 
 });
 
@@ -73,6 +74,14 @@ router.post('/:cubeId/attach-accessory', async (req, res) =>  {
 
     res.redirect(`/cubes/${cubeId}/details`);
     
+});
+
+router.get('/:cubeId/delete', async (req, res) => {
+
+    const cube = await cubeManager.getOne(req.params.cubeId).lean();
+
+    res.render('cube/delete', { cube });
+
 });
 
 module.exports = router;
