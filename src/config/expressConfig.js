@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
-const {auth} = require('../middlewares/authMiddleware');
+const { auth } = require('../middlewares/authMiddleware');
 
 function expressConfig(app) {
     // Express config:

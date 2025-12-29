@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { isAuth } = require('../middlewares/authMiddleware');
 const cubeManager = require('../managers/cubeManager');
 const accessoryManager = require('../managers/accessoryManager');
-const { getDifficultyOptionsViewData } = require('../utils/viewHelpers');
+const { getDifficultyOptionsViewDataCube } = require('../utils/viewHelpers');
 
 
 router.get('/:cubeId/details', async (req, res) => {
@@ -96,8 +96,8 @@ router.post('/:cubeId/attach-accessory', isAuth, async (req, res) =>  {
 router.get('/:cubeId/delete', isAuth, async (req, res) => {
 
     const cube = await cubeManager.getOne(req.params.cubeId).lean();
-    const options = getDifficultyOptionsViewDatacube(cube.difficultyLevel);
-    res.render('cube/delete', { cube });
+    const options = getDifficultyOptionsViewDataCube(cube.difficultyLevel);
+    res.render('cube/delete', { cube, options });
 
 });
 
@@ -116,7 +116,7 @@ router.get('/:cubeId/edit', isAuth, async (req, res) => {
         return res.redirect('/404');
     }
 
-    const options = getDifficultyOptionsViewData(cube.difficultyLevel);
+    const options = getDifficultyOptionsViewDataCube(cube.difficultyLevel);
 
     res.render('cube/edit', { cube, options });
 
@@ -124,7 +124,7 @@ router.get('/:cubeId/edit', isAuth, async (req, res) => {
 
 router.post('/:cubeId/edit', isAuth, async (req, res) => {
 
-    //const { name, description, imageUrl, difficultyLevel } = req.body; 
+    //const { name, description, imageUrl, difficultyLevel } = req.body; => valid!
 
     const cubeData = req.body; 
 

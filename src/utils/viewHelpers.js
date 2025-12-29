@@ -1,4 +1,4 @@
-exports.getDifficultyOptionsViewData = function (difficultyLevel) {
+exports.getDifficultyOptionsViewDataCube = function (difficultyLevel) {
 
     const titles = [
 
@@ -13,12 +13,11 @@ exports.getDifficultyOptionsViewData = function (difficultyLevel) {
 
     const options = titles.map((title, index) => ({
 
-
         title: `${index + 1} - ${title}`,
         value: index + 1,
         selected: Number(difficultyLevel) === index + 1,
 
-        //selected: Number(difficultyLevel) === index + 1 ? 'selected' : ''
+        //selected: Number(difficultyLevel) === index + 1 ? 'selected' : '',
 
     }));
 
