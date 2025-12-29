@@ -1,6 +1,5 @@
 
   <main>
-    {{#with cube}}
     <h1>{{cube.name}}</h1>
     <img class="cube" src="{{cube.imageUrl}}">
     <div class="details">
@@ -17,22 +16,18 @@
       {{/if}}
 
     </div>
-  </main>
 
   <h2>Accessories</h2>
-  <div class="accessories">
-    {{#each cube.accessories}}
-    <div class="accessory">
-      <img src="{{imageUrl}}" alt="{{name}}">
-      <h3>{{name}}</h3>
-      <p>{{description}}</p>
+    <div class="accessories">
+      {{#each cube.accessories}}
+      <div class="accessory">
+        <img src="{{imageUrl}}" alt="{{name}}">
+        <h3>{{name}}</h3>
+        <p>{{description}}</p>
+      </div>
+      {{else}}
+      <h3 class="italic">This cube has no accessories yet...</h3>
+      {{/each}}
     </div>
-    {{else}}
-    <h3 class="italic">This cube has no accessories yet...</h3>
-    {{/each}}
-  </div>
-
-  {{/with}}
-
   </main>
 
