@@ -6,10 +6,10 @@ const express = require('express');
 //const mongoose = require('mongoose');
 
 
-const expressConfig = require('./config/expressConfig.js');
-const handlebarsConfig = require('./config/handlebarsConfig.js');
-const dbConnect = require('./config/dbConfig.js');
-const routes = require('./routes.js');
+const expressConfig = require('./config/expressConfig');
+const handlebarsConfig = require('./config/handlebarsConfig');
+const dbConnect = require('./config/dbConfig');
+const routes = require('./routes');
 
 const app = express();
 
@@ -23,7 +23,6 @@ dbConnect()
     .catch(err => {
         console.log('DB error: ', err.message);
     });
-
 
 
 app.use(routes);
