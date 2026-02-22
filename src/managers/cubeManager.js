@@ -84,15 +84,15 @@ exports.create = (cubeData) => {
 exports.update = (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData);
 
 exports.delete = (cubeId) => Cube.findByIdAndDelete(cubeId);
-
+            
 exports.attachAccessory = async (cubeId, accessoryId) => {
 
    //return Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } });
    
-   const cube = await Cube.findById(cubeId);
+    const cube = await Cube.findById(cubeId);
 
-   cube.accessories.push(accessoryId);
+    cube.accessories.push(accessoryId);
 
-   return cube.save();
+    return cube.save();
 
 }; 
