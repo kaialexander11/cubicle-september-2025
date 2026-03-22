@@ -18,9 +18,9 @@ router.get('/:cubeId/details', async (req, res) => {
 
     const isOwner = cube.owner?.toString() === req.user?._id;
 
-    // console.log(cube.owner);
-    // console.log(req.user._id);
-
+    //console.log(cube.owner);
+    //console.log(req.user._id);
+    
     //console.log(cube.owner.toString());
     //console.log(req.user._id);
     //console.log(isOwner);
